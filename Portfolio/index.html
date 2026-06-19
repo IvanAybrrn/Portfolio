@@ -1,0 +1,164 @@
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<title>Portfolio</title>
+</head>
+<body>
+<header>
+	<div class="header">
+		<a href="#inicio" class="headertxt">Inicio</a>
+		<a href="#proyectos" class="headertxt">Proyectos</a>
+		<a href="#sobremi" class="headertxt">Sobre mi</a>
+		<a href="#certificaciones" class="headertxt">Certificaciones</a>
+	</div>
+</header>
+<div class="tituloinicio" id="inicio">
+	<h1 class="titulotexto">IVAN AYABARRENA</h1>
+	<h1 class="titulotexto2">TECNICO EN INFORMATICA</h1>
+	<div class="botonesinicio">
+		<a href="recursos/IvanAyabarrenaCurriculum.pdf" download>
+			<button class="boton">Curriculum</button>
+		</a>
+		<a href="https://ar.linkedin.com/company/red-link-s-a-">
+			<button class="boton">Linkedin</button>
+		</a>
+	</div>
+</div>
+
+</br>
+</br>
+</br>
+
+<div class="proyectos" id="proyectos">
+	<div class="proyectointro">
+	<h2 class="proyectotittle">Estos son algunos de mis proyectos</h2>
+	<span>A lo largo de mi formación y experiencia profesional he participado en diversos proyectos que me han permitido desarrollar y aplicar conocimientos en distintas áreas de la informática. Estos proyectos abarcan desde desarrollos personales orientados al aprendizaje y la experimentación con nuevas tecnologías, hasta trabajos académicos realizados como parte de mi formación técnica, así como tambien en el mundo laboral.</span>
+	</div>
+	<div>
+		<div class="proyecto"><span class="proyectotxt">Oficina de empleo: Software de gestion de personas para la municipalidad de San Miguel.</span></div>
+		
+	</div>
+	<div>
+		<div class="proyecto"><span class="proyectotxt">Likespich: Software accesibilidad para chicos con capacidades reducidas en los colegios.</span></div>
+	</div>
+	
+</div>
+
+</br>
+</br>
+</br>
+
+
+<h2 class="sobremitittle" id="sobremi">Sobre mi</h2>
+<div class="sobremi">
+	<div class="foto"></div>
+
+	<span class="sobremitxt">Soy Técnico en Informática con interés en el desarrollo de soluciones tecnológicas que aporten valor a organizaciones. Mis principales áreas de experiencia incluyen el desarrollo web, la implementación de sistemas CCTV, la consultoría IT y el soporte técnico.</span>
+
+
+
+
+</div>
+
+<h2 class="sobremitittle">Skills</h2>
+<div class="tecnologias">
+	<div class="tec1"></div>
+	<div class="tec2"></div>
+	<div class="tec3"></div>
+	<div class="tec4"></div>
+	<div class="tec5"></div>
+</div>
+
+<div class="certificaciones" id="certificaciones">
+	<h2>Certificaciones</h2>
+
+	
+</div>
+
+
+<script>
+
+// ===== ANIMACIONES AL APARECER =====
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            if(
+                entry.target.classList.contains("proyectointro") ||
+                entry.target.classList.contains("proyecto")
+            ){
+                entry.target.classList.add("animar-caer");
+            }
+
+            if(
+                entry.target.classList.contains("tec1") ||
+                entry.target.classList.contains("tec2") ||
+                entry.target.classList.contains("tec3") ||
+                entry.target.classList.contains("tec4") ||
+                entry.target.classList.contains("tec5")
+            ){
+                entry.target.classList.add("animar-aparecer");
+            }
+
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+},{
+    threshold: 0.2
+});
+
+document.querySelectorAll(
+    ".proyectointro, .proyecto, .tec1, .tec2, .tec3, .tec4, .tec5"
+).forEach(el => {
+    observer.observe(el);
+});
+
+
+// ===== MAQUINA DE ESCRIBIR =====
+
+const elemento = document.querySelector(".sobremitxt");
+const texto = elemento.textContent;
+
+elemento.textContent = "";
+
+const observerTexto = new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            let i = 0;
+
+            function escribir(){
+                if(i < texto.length){
+                    elemento.textContent += texto[i];
+                    i++;
+                    setTimeout(escribir, 35);
+                }
+            }
+
+            escribir();
+
+            observerTexto.unobserve(elemento);
+        }
+
+    });
+
+},{
+    threshold: 0.5
+});
+
+observerTexto.observe(elemento);
+
+</script>
+
+</body>
+</html>
